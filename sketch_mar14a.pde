@@ -94,10 +94,10 @@ class mPointer {
 }
 
 
-PVector line_intersect (float x1, float y1, float x2, float y2, float x3, float y3, float r)
+float[] line_intersect (float x1, float y1, float x2, float y2, float x3, float y3, float r)
 {
 
-  float ix, iy;
+  float[] intersection = new float[3] ;
   float a,b,c,d;
   float mu;
 
@@ -109,13 +109,18 @@ PVector line_intersect (float x1, float y1, float x2, float y2, float x3, float 
   if (d < 0)
   {
     //("no intersection");
+    intersection[0] = 0;
   }
   else if (d == 0){
     //("one intersection");
     mu = -b/(2 * a);
-    ix = x1 + mu * (x2-x1);
-    iy = y1 + mu * (y2-y1);  
+    intersection[0] = 1;
+    intersection[1] = x1 + mu * (x2-x1);
+    intersection[2] = y1 + mu * (y2-y1); 
   }
-  return new PVector(ix,iy);
+  
+  
+  return intersection;
+  
 }
 
